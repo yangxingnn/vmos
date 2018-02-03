@@ -119,6 +119,7 @@ public class StreamConsumer {
                     return vMax.compareTo(new Double(aggregate.split(",")[posMax])) > 0 ? value : aggregate;
                 }, TimeWindows.of(2000L).advanceBy(2000L), Serdes.String()).toStream();
 //        // JoinWindows are sliding windows
+        // 两种方法，一种，通过aggreate得出最大的，再并行通过filter，过滤出最大的记录，另一种是自定义processor
         iptvTopoFilter.print();
 
         Properties props = initConfig();
